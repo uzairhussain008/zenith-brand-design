@@ -1,23 +1,27 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
 
-const NAV = [
-  { to: "/", label: "Home" },
-  { to: "/work", label: "Work" },
-  { to: "/services", label: "Services" },
-  { to: "/about", label: "About" },
-  { to: "/process", label: "Process" },
-  { to: "/shop", label: "Shop" },
-  { to: "/testimonials", label: "Testimonials" },
-  { to: "/faq", label: "FAQ" },
-  { to: "/contact", label: "Contact" },
-] as const;
+type NavItem = { label: string; to?: string; hash?: string };
+const NAV: NavItem[] = [
+  { label: "Home", to: "/" },
+  { label: "Work", to: "/work" },
+  { label: "Services", to: "/services" },
+  { label: "About", hash: "about" },
+  { label: "Process", hash: "process" },
+  { label: "Shop", to: "/shop" },
+  { label: "Testimonials", hash: "testimonials" },
+  { label: "FAQ", hash: "faq" },
+  { label: "Contact", to: "/contact" },
+];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeHash, setActiveHash] = useState<string>("");
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -26,10 +30,58 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!isHome) { setActiveHash(""); return; }
+    const ids = NAV.filter((n) => n.hash).map((n) => n.hash!);
+    const els = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    if (!els.length) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActiveHash(visible.target.id);
+      },
+      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5, 1] },
+    );
+    els.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, [isHome]);
+
+  const renderLink = (n: NavItem, onClick?: () => void) => {
+    const base = "relative text-[color:var(--text-secondary)] hover:text-[color:var(--text-primary)] transition-colors";
+    if (n.hash) {
+      const isActive = isHome && activeHash === n.hash;
+      return (
+        <Link
+          key={n.label}
+          to="/"
+          hash={n.hash}
+          onClick={onClick}
+          className={`${base} ${isActive ? "text-[color:var(--accent-orange)]" : ""}`}
+        >
+          {n.label}
+        </Link>
+      );
+    }
+    return (
+      <Link
+        key={n.label}
+        to={n.to!}
+        onClick={onClick}
+        className={base}
+        activeProps={{ className: "text-[color:var(--accent-orange)]" }}
+        activeOptions={{ exact: n.to === "/" }}
+      >
+        {n.label}
+      </Link>
+    );
+  };
+
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass" : "bg-transparent"
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        scrolled ? "glass backdrop-blur-xl shadow-[0_8px_30px_-12px_rgba(0,0,0,0.5)]" : "bg-transparent"
       }`}
     >
       <div className="container-prem flex items-center justify-between py-4">
@@ -38,17 +90,7 @@ export function Header() {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-7 text-sm">
-          {NAV.map((n) => (
-            <Link
-              key={n.to}
-              to={n.to}
-              className="text-[color:var(--text-secondary)] hover:text-[color:var(--text-primary)] transition-colors"
-              activeProps={{ className: "text-[color:var(--accent-orange)]" }}
-              activeOptions={{ exact: n.to === "/" }}
-            >
-              {n.label}
-            </Link>
-          ))}
+          {NAV.map((n) => renderLink(n))}
         </nav>
 
         <div className="flex items-center gap-3">
@@ -72,14 +114,7 @@ export function Header() {
         <div className="lg:hidden glass border-t border-white/5">
           <div className="container-prem py-4 flex flex-col gap-2">
             {NAV.map((n) => (
-              <Link
-                key={n.to}
-                to={n.to}
-                onClick={() => setOpen(false)}
-                className="py-2 text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]"
-              >
-                {n.label}
-              </Link>
+              <div key={n.label} className="py-2">{renderLink(n, () => setOpen(false))}</div>
             ))}
           </div>
         </div>

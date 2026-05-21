@@ -12,11 +12,15 @@ export function Footer() {
             A creative branding studio crafting bold identities and editorial brand systems for ambitious founders.
           </p>
           <nav className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm">
-            {["/", "/work", "/services", "/about", "/process", "/shop", "/testimonials", "/faq", "/contact"].map((p, i) => (
-              <Link key={p} to={p} className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">
-                {["Home","Work","Services","About","Process","Shop","Testimonials","FAQ","Contact"][i]}
-              </Link>
-            ))}
+            <Link to="/" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">Home</Link>
+            <Link to="/work" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">Work</Link>
+            <Link to="/services" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">Services</Link>
+            <Link to="/" hash="about" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">About</Link>
+            <Link to="/" hash="process" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">Process</Link>
+            <Link to="/shop" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">Shop</Link>
+            <Link to="/" hash="testimonials" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">Testimonials</Link>
+            <Link to="/" hash="faq" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">FAQ</Link>
+            <Link to="/contact" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">Contact</Link>
           </nav>
           <div className="flex items-center gap-5">
             {[Instagram, Twitter, Linkedin, Dribbble].map((Icon, i) => (
