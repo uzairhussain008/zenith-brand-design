@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkRouteImport } from './routes/work'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ProcessRouteImport } from './routes/process'
@@ -28,6 +29,11 @@ const WorkRoute = WorkRouteImport.update({
 const TestimonialsRoute = TestimonialsRouteImport.update({
   id: '/testimonials',
   path: '/testimonials',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShopRoute = ShopRouteImport.update({
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/testimonials': typeof TestimonialsRoute
   '/work': typeof WorkRoute
 }
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/testimonials': typeof TestimonialsRoute
   '/work': typeof WorkRoute
 }
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/testimonials': typeof TestimonialsRoute
   '/work': typeof WorkRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/process'
     | '/services'
     | '/shop'
+    | '/sitemap.xml'
     | '/testimonials'
     | '/work'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/process'
     | '/services'
     | '/shop'
+    | '/sitemap.xml'
     | '/testimonials'
     | '/work'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/process'
     | '/services'
     | '/shop'
+    | '/sitemap.xml'
     | '/testimonials'
     | '/work'
   fileRoutesById: FileRoutesById
@@ -156,6 +168,7 @@ export interface RootRouteChildren {
   ProcessRoute: typeof ProcessRoute
   ServicesRoute: typeof ServicesRoute
   ShopRoute: typeof ShopRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TestimonialsRoute: typeof TestimonialsRoute
   WorkRoute: typeof WorkRoute
 }
@@ -174,6 +187,13 @@ declare module '@tanstack/react-router' {
       path: '/testimonials'
       fullPath: '/testimonials'
       preLoaderRoute: typeof TestimonialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/shop': {
@@ -244,6 +264,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProcessRoute: ProcessRoute,
   ServicesRoute: ServicesRoute,
   ShopRoute: ShopRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TestimonialsRoute: TestimonialsRoute,
   WorkRoute: WorkRoute,
 }
