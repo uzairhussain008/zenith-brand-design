@@ -12,9 +12,8 @@ const schema = z.object({
 export const sendContactMessage = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => schema.parse(input))
   .handler(async ({ data }) => {
-    const LOVABLE_API_KEY = process.env.LOVABLE_API_KEY;
     const RESEND_API_KEY = process.env.RESEND_API_KEY;
-    if (!LOVABLE_API_KEY || !RESEND_API_KEY) {
+    if (!RESEND_API_KEY) {
       throw new Error("Email service is not configured.");
     }
 
@@ -28,12 +27,11 @@ export const sendContactMessage = createServerFn({ method: "POST" })
       <p style="white-space:pre-wrap">${escapeHtml(data.message)}</p>
     `;
 
-    const res = await fetch("https://connector-gateway.lovable.dev/resend/emails", {
+    const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
-        "X-Connection-Api-Key": RESEND_API_KEY,
+        Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
         from: "UF Studio Contact <onboarding@resend.dev>",
