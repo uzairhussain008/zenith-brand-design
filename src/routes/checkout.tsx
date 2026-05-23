@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/Section";
-import { ShieldCheck, Lock, CreditCard } from "lucide-react";
+import { ShieldCheck, Lock } from "lucide-react";
 import { useState } from "react";
 
 export const Route = createFileRoute("/checkout")({
@@ -38,23 +38,8 @@ function Checkout() {
             <Input name="email" type="email" label="Email" />
             <Input name="country" label="Country" />
           </div>
-          <h3 className="text-2xl font-bold pt-4">Payment</h3>
-          <div className="grid sm:grid-cols-3 gap-3">
-            {["Card","PayPal","Apple Pay"].map((m,i) => (
-              <label key={m} className="cursor-pointer">
-                <input type="radio" name="method" defaultChecked={i===0} className="peer sr-only" />
-                <div className="p-4 rounded-xl border border-white/10 peer-checked:border-[color:var(--accent-orange)] peer-checked:bg-[color:var(--accent-orange)]/10 flex items-center justify-center gap-2 font-semibold transition">
-                  <CreditCard size={16}/> {m}
-                </div>
-              </label>
-            ))}
-          </div>
-          <Input name="card" label="Card Number" placeholder="1234 5678 9012 3456" />
-          <div className="grid sm:grid-cols-3 gap-4">
-            <Input name="exp" label="Expiry" placeholder="MM/YY" />
-            <Input name="cvc" label="CVC" placeholder="123" />
-            <Input name="zip" label="ZIP" />
-          </div>
+          <h3 className="text-2xl font-bold pt-4">Email</h3>
+          <Input name="email_confirm" type="email" label="Email" placeholder="you@example.com" />
           <button type="submit" className="w-full inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-gradient-accent text-white font-semibold glow hover:scale-[1.01] transition">
             <Lock size={16}/> {done ? "Payment Confirmed ✓" : `Complete Purchase — $${total}`}
           </button>
