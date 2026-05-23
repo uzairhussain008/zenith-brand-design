@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { Section } from "@/components/Section";
-import { Mail, MapPin, MessageCircle, Send, Instagram, Twitter, Linkedin, Dribbble, Calendar } from "lucide-react";
+import { Mail, MapPin, Phone, Send, Instagram, Twitter, Linkedin, Dribbble, Calendar } from "lucide-react";
 import { useState } from "react";
+import { sendContactMessage } from "@/lib/contact.functions";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -16,12 +18,35 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+  const send = useServerFn(sendContactMessage);
   return (
     <Section eyebrow="Get in touch" title="Let's build your brand.">
       <div className="grid lg:grid-cols-[1.3fr_1fr] gap-10">
         <form
-          onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+          onSubmit={async (e) => {
+            e.preventDefault();
+            const fd = new FormData(e.currentTarget);
+            setStatus("sending");
+            setErrorMsg("");
+            try {
+              await send({
+                data: {
+                  name: String(fd.get("name") ?? ""),
+                  email: String(fd.get("email") ?? ""),
+                  type: String(fd.get("type") ?? ""),
+                  budget: String(fd.get("budget") ?? ""),
+                  message: String(fd.get("message") ?? ""),
+                },
+              });
+              setStatus("sent");
+              (e.target as HTMLFormElement).reset();
+            } catch (err: any) {
+              setStatus("error");
+              setErrorMsg(err?.message ?? "Failed to send message.");
+            }
+          }}
           className="p-8 md:p-10 rounded-3xl bg-[color:var(--bg-card)] border border-white/5 space-y-5"
         >
           <div className="grid sm:grid-cols-2 gap-5">
@@ -33,15 +58,18 @@ function Contact() {
             <Select label="Budget" name="budget" options={["$2k – $5k","$5k – $15k","$15k – $30k","$30k+"]} />
           </div>
           <Field label="Message" name="message" textarea />
-          <button type="submit" className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-gradient-accent text-white font-semibold glow hover:scale-[1.02] transition">
-            {sent ? "Message sent ✓" : <>Send Message <Send size={16} /></>}
+          <button type="submit" disabled={status === "sending"} className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-gradient-accent text-white font-semibold glow hover:scale-[1.02] transition disabled:opacity-60">
+            {status === "sent" ? "Message sent ✓" : status === "sending" ? "Sending…" : <>Send Message <Send size={16} /></>}
           </button>
+          {status === "error" && (
+            <p className="text-sm text-red-400">{errorMsg}</p>
+          )}
         </form>
 
         <aside className="space-y-5">
           {[
-            { Icon: Mail, t: "Email", v: "hello@ufstudio.design" },
-            { Icon: MessageCircle, t: "WhatsApp", v: "+1 (415) 555-0123" },
+            { Icon: Mail, t: "Email", v: "fawad@ufstudio.shop" },
+            { Icon: Phone, t: "Phone", v: "+1 (970) 458-2113" },
             { Icon: MapPin, t: "Location", v: "Lisbon · Remote-first studio" },
           ].map(({Icon,t,v}) => (
             <div key={t} className="p-6 rounded-2xl bg-[color:var(--bg-card)] border border-white/5 flex items-start gap-4">
