@@ -49,7 +49,7 @@ function Shop() {
               <div className="mt-5 flex items-center justify-between">
                 <span className="text-2xl font-bold text-gradient">${p.p}</span>
                 <Link to="/checkout" search={{ item: p.t, price: p.p }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-accent text-white text-sm font-semibold hover:scale-105 transition">
-                  <ShoppingBag size={14} /> Buy Now
+                  <ShoppingBag size={14} /> Inquire
                 </Link>
               </div>
             </div>
