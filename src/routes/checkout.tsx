@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/Section";
-import { ShieldCheck, Lock, CreditCard } from "lucide-react";
+import { ShieldCheck, Lock } from "lucide-react";
 import { useState } from "react";
 
 export const Route = createFileRoute("/checkout")({
