@@ -31,7 +31,10 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    if (!isHome) { setActiveHash(""); return; }
+    if (!isHome) {
+      setActiveHash("");
+      return;
+    }
     const ids = NAV.filter((n) => n.hash).map((n) => n.hash!);
     const els = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
     if (!els.length) return;
@@ -49,7 +52,8 @@ export function Header() {
   }, [isHome]);
 
   const renderLink = (n: NavItem, onClick?: () => void) => {
-    const base = "relative text-[color:var(--text-secondary)] hover:text-[color:var(--text-primary)] transition-colors";
+    const base =
+      "relative text-[color:var(--text-secondary)] hover:text-[color:var(--text-primary)] transition-colors";
     if (n.hash) {
       const isActive = isHome && activeHash === n.hash;
       return (
@@ -81,7 +85,9 @@ export function Header() {
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass backdrop-blur-xl shadow-[0_8px_30px_-12px_rgba(0,0,0,0.5)]" : "bg-transparent"
+        scrolled
+          ? "glass backdrop-blur-xl shadow-[0_8px_30px_-12px_rgba(0,0,0,0.5)]"
+          : "bg-transparent"
       }`}
     >
       <div className="container-prem flex items-center justify-between py-4">
@@ -114,7 +120,9 @@ export function Header() {
         <div className="lg:hidden glass border-t border-white/5">
           <div className="container-prem py-4 flex flex-col gap-2">
             {NAV.map((n) => (
-              <div key={n.label} className="py-2">{renderLink(n, () => setOpen(false))}</div>
+              <div key={n.label} className="py-2">
+                {renderLink(n, () => setOpen(false))}
+              </div>
             ))}
           </div>
         </div>

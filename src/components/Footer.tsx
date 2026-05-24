@@ -9,22 +9,76 @@ export function Footer() {
         <div className="flex flex-col items-center text-center gap-8">
           <img src={logo} alt="UF Studio" className="h-12 w-auto" width={140} height={48} />
           <p className="max-w-xl text-[color:var(--text-secondary)]">
-            A creative branding studio crafting bold identities and editorial brand systems for ambitious founders.
+            A creative branding studio crafting bold identities and editorial brand systems for
+            ambitious founders.
           </p>
           <nav className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm">
-            <Link to="/" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">Home</Link>
-            <Link to="/work" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">Work</Link>
-            <Link to="/services" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">Services</Link>
-            <Link to="/" hash="about" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">About</Link>
-            <Link to="/" hash="process" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">Process</Link>
-            <Link to="/shop" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">Shop</Link>
-            <Link to="/" hash="testimonials" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">Testimonials</Link>
-            <Link to="/" hash="faq" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">FAQ</Link>
-            <Link to="/contact" className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]">Contact</Link>
+            <Link
+              to="/"
+              className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]"
+            >
+              Home
+            </Link>
+            <Link
+              to="/work"
+              className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]"
+            >
+              Work
+            </Link>
+            <Link
+              to="/services"
+              className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]"
+            >
+              Services
+            </Link>
+            <Link
+              to="/"
+              hash="about"
+              className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]"
+            >
+              About
+            </Link>
+            <Link
+              to="/"
+              hash="process"
+              className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]"
+            >
+              Process
+            </Link>
+            <Link
+              to="/shop"
+              className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]"
+            >
+              Shop
+            </Link>
+            <Link
+              to="/"
+              hash="testimonials"
+              className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]"
+            >
+              Testimonials
+            </Link>
+            <Link
+              to="/"
+              hash="faq"
+              className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]"
+            >
+              FAQ
+            </Link>
+            <Link
+              to="/contact"
+              className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-orange)]"
+            >
+              Contact
+            </Link>
           </nav>
           <div className="flex items-center gap-5">
             {[Instagram, Twitter, Linkedin, Dribbble].map((Icon, i) => (
-              <a key={i} href="#" className="p-2.5 rounded-full bg-white/5 hover:bg-gradient-accent transition">
+              <a
+                key={i}
+                href="#"
+                className="p-2.5 rounded-full bg-white/5 hover:bg-gradient-accent transition"
+              >
                 <Icon size={18} />
               </a>
             ))}

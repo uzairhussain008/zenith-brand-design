@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkRouteImport } from './routes/work'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -20,11 +19,6 @@ import { Route as IndexRouteImport } from './routes/index'
 const WorkRoute = WorkRouteImport.update({
   id: '/work',
   path: '/work',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShopRoute = ShopRouteImport.update({
@@ -59,7 +53,6 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/services': typeof ServicesRoute
   '/shop': typeof ShopRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work': typeof WorkRoute
 }
 export interface FileRoutesByTo {
@@ -68,7 +61,6 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/services': typeof ServicesRoute
   '/shop': typeof ShopRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work': typeof WorkRoute
 }
 export interface FileRoutesById {
@@ -78,28 +70,13 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/services': typeof ServicesRoute
   '/shop': typeof ShopRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work': typeof WorkRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/checkout'
-    | '/contact'
-    | '/services'
-    | '/shop'
-    | '/sitemap.xml'
-    | '/work'
+  fullPaths: '/' | '/checkout' | '/contact' | '/services' | '/shop' | '/work'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/checkout'
-    | '/contact'
-    | '/services'
-    | '/shop'
-    | '/sitemap.xml'
-    | '/work'
+  to: '/' | '/checkout' | '/contact' | '/services' | '/shop' | '/work'
   id:
     | '__root__'
     | '/'
@@ -107,7 +84,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/services'
     | '/shop'
-    | '/sitemap.xml'
     | '/work'
   fileRoutesById: FileRoutesById
 }
@@ -117,7 +93,6 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   ServicesRoute: typeof ServicesRoute
   ShopRoute: typeof ShopRoute
-  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WorkRoute: typeof WorkRoute
 }
 
@@ -128,13 +103,6 @@ declare module '@tanstack/react-router' {
       path: '/work'
       fullPath: '/work'
       preLoaderRoute: typeof WorkRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/shop': {
@@ -181,7 +149,6 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   ServicesRoute: ServicesRoute,
   ShopRoute: ShopRoute,
-  SitemapDotxmlRoute: SitemapDotxmlRoute,
   WorkRoute: WorkRoute,
 }
 export const routeTree = rootRouteImport
