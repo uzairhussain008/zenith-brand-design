@@ -1,5 +1,10 @@
 import { PropsWithChildren } from "react";
-type Props = PropsWithChildren<{ eyebrow?: string; title?: string; subtitle?: string; className?: string }>;
+type Props = PropsWithChildren<{
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
+  className?: string;
+}>;
 export function Section({ eyebrow, title, subtitle, className = "", children }: Props) {
   return (
     <section className={`py-20 md:py-28 ${className}`}>
@@ -12,7 +17,11 @@ export function Section({ eyebrow, title, subtitle, className = "", children }: 
               </span>
             )}
             {title && <h2 className="text-4xl md:text-6xl font-bold leading-[1.05]">{title}</h2>}
-            {subtitle && <p className="mt-5 text-lg text-[color:var(--text-secondary)] max-w-2xl">{subtitle}</p>}
+            {subtitle && (
+              <p className="mt-5 text-lg text-[color:var(--text-secondary)] max-w-2xl">
+                {subtitle}
+              </p>
+            )}
           </div>
         )}
         {children}
