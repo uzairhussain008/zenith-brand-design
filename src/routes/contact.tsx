@@ -1,17 +1,25 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/Section";
-import {
-  Calendar,
-  Dribbble,
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Send,
-  Twitter,
-} from "lucide-react";
+import { Calendar, Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
+
+const socialLinks = [
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/people/Ufstudio/61590108610899/",
+    Icon: Facebook,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/uf-studio-596069406/",
+    Icon: Linkedin,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/ufstudio_official/",
+    Icon: Instagram,
+  },
+];
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -121,10 +129,13 @@ function Contact() {
             </a>
           </div>
           <div className="flex gap-3 pt-2">
-            {[Instagram, Twitter, Linkedin, Dribbble].map((Icon, i) => (
+            {socialLinks.map(({ label, href, Icon }) => (
               <a
-                key={i}
-                href="#"
+                key={label}
+                href={href}
+                aria-label={label}
+                target="_blank"
+                rel="noreferrer"
                 className="p-3 rounded-full bg-white/5 hover:bg-gradient-accent transition"
               >
                 <Icon size={18} />
