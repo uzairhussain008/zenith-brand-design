@@ -53,7 +53,7 @@ function Home() {
             <div className="animate-fade-up">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs uppercase tracking-[0.2em] text-[color:var(--text-secondary)] mb-8">
                 <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent-orange)] animate-pulse" />
-                Independent Branding Studio — est. 2018
+                Independent Branding Studio — est. 2022
               </span>
               <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold leading-[0.95] tracking-tight">
                 Building <span className="text-gradient italic">Brands</span> That
@@ -83,7 +83,7 @@ function Home() {
               <div className="mt-14 grid grid-cols-3 gap-6 max-w-md">
                 {[
                   ["120+", "Brands"],
-                  ["8 yrs", "Crafting"],
+                  ["4 yrs", "Crafting"],
                   ["32", "Awards"],
                 ].map(([n, l]) => (
                   <div key={l}>
@@ -297,7 +297,7 @@ function Home() {
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 glass rounded-2xl p-5">
-                <div className="text-3xl font-bold text-gradient">8+ yrs</div>
+                <div className="text-3xl font-bold text-gradient">4+ yrs</div>
                 <div className="text-xs uppercase tracking-widest text-[color:var(--text-secondary)]">
                   Crafting Brands
                 </div>

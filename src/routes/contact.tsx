@@ -67,7 +67,7 @@ function Contact() {
             <Select
               label="Budget"
               name="budget"
-              options={["$2k - $5k", "$5k - $15k", "$15k - $30k", "$30k+"]}
+              options={["Starting from $10", "Starting from $20", "Starting from $30", "Starting from $40", "Custom"]}
             />
           </div>
           <Field label="Message" name="message" textarea />
