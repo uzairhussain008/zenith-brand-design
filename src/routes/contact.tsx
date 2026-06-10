@@ -89,7 +89,7 @@ function Contact() {
           {[
             { Icon: Mail, t: "Email", v: "fawad@ufstudio.shop" },
             { Icon: Phone, t: "Phone", v: "+1 (970) 458-2113" },
-            { Icon: MapPin, t: "Location", v: "Lisbon - Remote-first studio" },
+            { Icon: MapPin, t: "Location", v: "United States - Remote-first studio" },
           ].map(({ Icon, t, v }) => (
             <div
               key={t}
