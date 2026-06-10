@@ -16,10 +16,10 @@ import {
 import { useState } from "react";
 import heroVisual from "@/assets/hero-visual.jpg";
 import designer from "@/assets/designer.jpg";
-import work1 from "@/assets/work-1.jpg";
-import work2 from "@/assets/work-2.jpg";
-import work3 from "@/assets/work-3.jpg";
-import work4 from "@/assets/work-4.jpg";
+import work1 from "@/assets/img1.jpg";
+import work2 from "@/assets/img2.jpg";
+import work3 from "@/assets/img3.jpg";
+import work4 from "@/assets/img4.jpg";
 import { Marquee } from "@/components/Marquee";
 import { Section } from "@/components/Section";
 

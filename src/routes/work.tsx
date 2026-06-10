@@ -1,12 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/Section";
-import w1 from "@/assets/work-1.jpg";
-import w2 from "@/assets/work-2.jpg";
-import w3 from "@/assets/work-3.jpg";
-import w4 from "@/assets/work-4.jpg";
-import w5 from "@/assets/work-5.jpg";
-import w6 from "@/assets/work-6.jpg";
+import w1 from "@/assets/img1.jpg";
+import w2 from "@/assets/img2.jpg";
+import w3 from "@/assets/img3.jpg";
+import w4 from "@/assets/img4.jpg";
+import w5 from "@/assets/img5.jpg";
+import w6 from "@/assets/img6.jpg";
 
 export const Route = createFileRoute("/work")({
   head: () => ({
