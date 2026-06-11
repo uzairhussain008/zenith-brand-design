@@ -45,22 +45,20 @@ function Home() {
       {/* HERO */}
       <section className="relative overflow-hidden pt-16 pb-24 md:pt-24 md:pb-32">
         <div className="absolute inset-0 radial-glow pointer-events-none" />
-        <div className="absolute top-40 -left-32 w-96 h-96 bg-[color:var(--accent-orange)] opacity-20 blur-[120px] rounded-full animate-pulse-glow" />
-        <div className="absolute bottom-0 right-0 w-[28rem] h-[28rem] bg-[color:var(--accent-red)] opacity-15 blur-[140px] rounded-full" />
+        <div className="absolute top-40 -left-32 w-96 h-96 bg-(--accent-orange) opacity-20 blur-[120px] rounded-full animate-pulse-glow" />
+        <div className="absolute bottom-0 right-0 w-md h-112 bg-(--accent-red) opacity-15 blur-[140px] rounded-full" />
 
         <div className="container-prem relative">
           <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
             <div className="animate-fade-up">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs uppercase tracking-[0.2em] text-[color:var(--text-secondary)] mb-8">
-                <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent-orange)] animate-pulse" />
-                Independent Branding Studio — est. 2022
               </span>
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold leading-[0.95] tracking-tight">
-                Building <span className="text-gradient italic">Brands</span> That
+              <h1 className=" w-full text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-bold">
+                Building <span className="text-gradient ">Brands</span> That
                 <br />
                 Leave an Impact.
               </h1>
-              <p className="mt-7 max-w-xl text-lg text-[color:var(--text-secondary)] leading-relaxed">
+              <p className="mt-7 max-w-xl text-lg text-(--text-secondary) leading-relaxed">
                 We craft bold logos, premium identity systems, and editorial brand experiences for
                 founders who refuse to blend in.
               </p>
@@ -74,7 +72,7 @@ function Home() {
                 </Link>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 px-7 py-4 rounded-full border border-white/15 hover:border-[color:var(--accent-orange)] hover:text-[color:var(--accent-orange)] transition"
+                  className="inline-flex items-center gap-2 px-7 py-4 rounded-full border border-white/15 hover:border-(--accent-orange) hover:text-[color:var(--accent-orange)] transition"
                 >
                   Book a Call
                 </Link>
@@ -88,7 +86,7 @@ function Home() {
                 ].map(([n, l]) => (
                   <div key={l}>
                     <div className="text-3xl font-bold text-gradient">{n}</div>
-                    <div className="text-xs uppercase tracking-widest text-[color:var(--text-secondary)] mt-1">
+                    <div className="text-xs uppercase tracking-widest text-(--text-secondary) mt-1">
                       {l}
                     </div>
                   </div>
@@ -97,7 +95,7 @@ function Home() {
             </div>
 
             <div className="relative animate-fade-up" style={{ animationDelay: "0.2s" }}>
-              <div className="relative aspect-square rounded-[2rem] overflow-hidden glow">
+              <div className="relative aspect-square rounded-4xl overflow-hidden glow">
                 <img
                   src={heroVisual}
                   alt="Abstract premium 3D branding sculpture"
@@ -105,7 +103,7 @@ function Home() {
                   width={1024}
                   height={1024}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--bg-main)]/70 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-(--bg-main)/70 via-transparent to-transparent" />
               </div>
 
               <div className="absolute -top-6 -left-6 glass rounded-2xl p-4 flex items-center gap-3 animate-float">
@@ -114,7 +112,7 @@ function Home() {
                 </div>
                 <div>
                   <div className="text-sm font-semibold">Brand Identity</div>
-                  <div className="text-xs text-[color:var(--text-secondary)]">Studio Process</div>
+                  <div className="text-xs text-(--text-secondary)">Studio Process</div>
                 </div>
               </div>
 
@@ -127,7 +125,7 @@ function Home() {
                     <Star
                       key={i}
                       size={14}
-                      className="fill-[color:var(--accent-orange)] text-[color:var(--accent-orange)]"
+                      className="fill-(--accent-orange) text-(--accent-orange)"
                     />
                   ))}
                 </div>
@@ -143,9 +141,9 @@ function Home() {
       </section>
 
       {/* CLIENT MARQUEE */}
-      <div className="border-y border-white/5 bg-[color:var(--bg-secondary)]/50 py-10">
+      <div className="border-y border-white/5 bg-(--bg-secondary)/50 py-10">
         <div className="container-prem">
-          <p className="text-center text-xs uppercase tracking-[0.3em] text-[color:var(--text-secondary)] mb-6">
+          <p className="text-center text-xs uppercase tracking-[0.3em] text-(--text-secondary) mb-6">
             Trusted by visionary teams worldwide
           </p>
           <div className="flex flex-wrap justify-center items-center gap-x-14 gap-y-6 opacity-60">
