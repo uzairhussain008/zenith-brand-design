@@ -75,7 +75,7 @@ function Contact() {
             <Select
               label="Budget"
               name="budget"
-              options={["$2k - $5k", "$5k - $15k", "$15k - $30k", "$30k+"]}
+              options={["Starting from $10", "Custom Plan"]}
             />
           </div>
           <Field label="Message" name="message" textarea />
@@ -97,7 +97,7 @@ function Contact() {
           {[
             { Icon: Mail, t: "Email", v: "fawad@ufstudio.shop" },
             { Icon: Phone, t: "Phone", v: "+1 (970) 458-2113" },
-            { Icon: MapPin, t: "Location", v: "Lisbon - Remote-first studio" },
+            { Icon: MapPin, t: "Location", v: "United States - Remote-first studio" },
           ].map(({ Icon, t, v }) => (
             <div
               key={t}
