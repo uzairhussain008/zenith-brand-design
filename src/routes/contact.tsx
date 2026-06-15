@@ -37,28 +37,30 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   return (
     <Section eyebrow="Get in touch" title="Let's build your brand.">
       <div className="grid lg:grid-cols-[1.3fr_1fr] gap-10">
         <form
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
+            setStatus("sending");
             const fd = new FormData(e.currentTarget);
-            const name = String(fd.get("name") ?? "");
-            const email = String(fd.get("email") ?? "");
-            const type = String(fd.get("type") ?? "");
-            const budget = String(fd.get("budget") ?? "");
-            const message = String(fd.get("message") ?? "");
-            const subject = encodeURIComponent(`New inquiry from ${name}`);
-            const body = encodeURIComponent(
-              `Name: ${name}\nEmail: ${email}\nProject Type: ${type}\nBudget: ${budget}\n\nMessage:\n${message}`,
-            );
-
-            window.location.href = `mailto:fawad@ufstudio.shop?subject=${subject}&body=${body}`;
-            setStatus("sent");
-            e.currentTarget.reset();
+            try {
+              const res = await fetch("/send-mail.php", { method: "POST", body: fd });
+              const data = await res.json();
+              if (res.ok && data.ok) {
+                setStatus("sent");
+                e.currentTarget.reset();
+              } else {
+                setStatus("error");
+                console.error(data.error || "Unknown error");
+              }
+            } catch (err) {
+              setStatus("error");
+              console.error(err);
+            }
           }}
           className="p-8 md:p-10 rounded-3xl bg-[color:var(--bg-card)] border border-white/5 space-y-5"
         >
@@ -81,16 +83,15 @@ function Contact() {
           <Field label="Message" name="message" textarea />
           <button
             type="submit"
-            className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-gradient-accent text-white font-semibold glow hover:scale-[1.02] transition"
+            disabled={status === "sending"}
+            className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-gradient-accent text-white font-semibold glow hover:scale-[1.02] transition disabled:opacity-60"
           >
-            {status === "sent" ? (
-              "Email draft opened"
-            ) : (
-              <>
-                Send Message <Send size={16} />
-              </>
-            )}
+            {status === "sending" ? "Sending..." : status === "sent" ? "Sent" : "Send Message"}
+            {status !== "sending" && status !== "sent" && <Send size={16} />}
           </button>
+          {status === "error" && (
+            <div className="text-sm text-red-400">Something went wrong. Please try again.</div>
+          )}
         </form>
 
         <aside className="space-y-5">
