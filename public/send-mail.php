@@ -36,6 +36,7 @@ if (!file_exists(__DIR__ . '/../vendor/autoload.php') && !file_exists(__DIR__ . 
 }
 
 require_once __DIR__ . '/../vendor/autoload.php';
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -65,5 +66,3 @@ try {
     http_response_code(500);
     echo json_encode(['ok' => false, 'error' => $mail->ErrorInfo ?: $e->getMessage()]);
 }
-
-?>
