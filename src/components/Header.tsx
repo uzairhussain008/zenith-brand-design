@@ -92,7 +92,7 @@ export function Header() {
     >
       <div className="container-prem flex items-center justify-between py-4">
         <Link to="/" className="flex items-center gap-2 group">
-          <img src={logo} alt="UF Studio" className="h-10 w-auto" width={120} height={40} />
+          <img src={logo} alt="UF Studio" className="h-16 w-auto" width={120} height={40} />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-7 text-sm">
