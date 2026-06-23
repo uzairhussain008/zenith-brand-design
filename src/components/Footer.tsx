@@ -25,7 +25,7 @@ export function Footer() {
     <footer className="relative mt-32 border-t border-white/5 bg-(--bg-secondary)">
       <div className="container-prem py-16">
         <div className="flex flex-col items-center text-center gap-8">
-          <img src={logo} alt="UF Studio" className="h-12 w-auto" width={140} height={48} />
+          <img src={logo} alt="UF Studio" className="h-16 w-auto" width={140} height={48} />
           <p className="max-w-xl text-(--text-secondary)">
             A creative branding studio crafting bold identities and editorial brand systems for
             ambitious founders.

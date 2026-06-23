@@ -92,11 +92,9 @@ function Work() {
                 />
               </div>
               <div className="p-7">
-                <div className="text-xs uppercase tracking-widest text-[color:var(--accent-orange)]">
+                <div className="text-xl uppercase tracking-widest text-[color:var(--accent-orange)]">
                   {p.cat}
                 </div>
-                <h3 className="mt-2 text-2xl font-bold">{p.title}</h3>
-                <p className="mt-2 text-sm text-[color:var(--text-secondary)]">{p.desc}</p>
                 <Link
                   to="/contact"
                   className="mt-5 inline-flex items-center gap-2 text-sm font-semibold hover:text-[color:var(--accent-orange)] transition"

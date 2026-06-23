@@ -52,6 +52,8 @@ function Home() {
           <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
             <div className="animate-fade-up">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs uppercase tracking-[0.2em] text-[color:var(--text-secondary)] mb-8">
+              <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent-orange)] animate-pulse" />
+                Independent Branding Studio — est. 2022
               </span>
               <h1 className=" w-full text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-bold">
                 Building <span className="text-gradient ">Brands</span> That
@@ -212,10 +214,9 @@ function Home() {
               </div>
               <div className="p-6 flex items-center justify-between">
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-[color:var(--accent-orange)]">
+                  <div className="text-xl uppercase tracking-widest text-[color:var(--accent-orange)]">
                     {w.cat}
                   </div>
-                  <h3 className="text-xl font-bold mt-1">{w.title}</h3>
                 </div>
                 <div className="h-11 w-11 rounded-full border border-white/10 grid place-items-center group-hover:bg-gradient-accent group-hover:border-transparent transition">
                   <ArrowRight size={16} />
