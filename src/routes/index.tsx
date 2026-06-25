@@ -305,13 +305,10 @@ function Home() {
             </div>
             <div>
               <p className="text-lg text-[color:var(--text-secondary)] leading-relaxed">
-                UF Studio is a small, senior-led branding practice. We partner with founders and
-                creative teams to design identities with editorial rigor, narrative depth, and a
-                clear strategic backbone.
+                UFStudio is a premium graphic design agency with 4+ years of experience helping businesses worldwide build powerful brands that stand out.
               </p>
               <p className="mt-5 text-lg text-[color:var(--text-secondary)] leading-relaxed">
-                Every engagement is led personally — no junior handoffs, no template thinking. Just
-                bold, deliberate brand design.
+                We specialize in logo design, brand identity, social media graphics, and motion graphics. Every project is handled personally — no templates, no shortcuts, just pure creative work that makes your brand impossible to ignore
               </p>
               <div className="mt-10 grid grid-cols-3 gap-6">
                 {[

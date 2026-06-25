@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/Section";
 import { Calendar, Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const socialLinks = [
   {
@@ -39,6 +39,13 @@ export const Route = createFileRoute("/contact")({
 function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
+  useEffect(() => {
+    if (status === "sent") {
+      const timer = setTimeout(() => setStatus("idle"), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
+
   return (
     <Section eyebrow="Get in touch" title="Let's build your brand.">
       <div className="grid lg:grid-cols-[1.3fr_1fr] gap-10">
@@ -46,20 +53,18 @@ function Contact() {
           onSubmit={async (e) => {
             e.preventDefault();
             setStatus("sending");
-            const fd = new FormData(e.currentTarget);
+            const form = e.currentTarget;
+            const fd = new FormData(form);
             try {
               const res = await fetch("/send-mail.php", { method: "POST", body: fd });
-              const data = await res.json();
-              if (res.ok && data.ok) {
+              if (res.ok) {
                 setStatus("sent");
-                e.currentTarget.reset();
+                form.reset();
               } else {
                 setStatus("error");
-                console.error(data.error || "Unknown error");
               }
-            } catch (err) {
+            } catch {
               setStatus("error");
-              console.error(err);
             }
           }}
           className="p-8 md:p-10 rounded-3xl bg-[color:var(--bg-card)] border border-white/5 space-y-5"
