@@ -13,7 +13,7 @@ $cfg = [
     'smtp_secure' => 'tls',
     'from_email' => 'fawad@ufstudio.shop',
     'from_name' => 'Uf Studio',
-    'to_email' => 'esharibmlk190@gmail.com',
+    'to_email' => 'fawadbhatti771@gmail.com',
 ];
 
 $name = trim($_POST['name'] ?? '');
@@ -29,13 +29,20 @@ if (!$name || !$email || !$message) {
 }
 
 // Try to load PHPMailer
-if (!file_exists(__DIR__ . '/../vendor/autoload.php') && !file_exists(__DIR__ . '/vendor/autoload.php')) {
+$autoload = null;
+foreach ([__DIR__ . '/../vendor/autoload.php', __DIR__ . '/vendor/autoload.php'] as $path) {
+    if (file_exists($path)) {
+        $autoload = $path;
+        break;
+    }
+}
+if (!$autoload) {
     http_response_code(500);
     echo json_encode(['ok' => false, 'error' => 'PHPMailer not installed. Run composer require phpmailer/phpmailer']);
     exit;
 }
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once $autoload;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
