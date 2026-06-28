@@ -1,6 +1,7 @@
 import { Outlet } from "@tanstack/react-router";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { WhatsAppButton } from "./WhatsAppButton";
 
 export function SiteShell() {
   return (
@@ -10,6 +11,7 @@ export function SiteShell() {
         <Outlet />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }
